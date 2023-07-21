@@ -1,8 +1,8 @@
 {
-  "name": "next-firebase-starter",
+  "name": "3.5e-spell-book",
   "private": true,
   "version": "1.0.0",
-  "author": "Trinity Christiana",
+  "author": "Mason Austin",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
