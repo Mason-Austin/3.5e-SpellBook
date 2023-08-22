@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React from 'react';
 import { Button } from 'react-bootstrap';
 import { signIn } from '../utils/auth';
@@ -9,12 +10,12 @@ function Signin() {
       style={{
         height: '90vh',
         padding: '30px',
-        maxWidth: '400px',
+        maxWidth: '660px',
         margin: '0 auto',
       }}
     >
-      <h1>Hi there!</h1>
-      <p>Click the button below to login!</p>
+      <img src="https://www.adaptivewfs.com/wp-content/uploads/2020/07/logo-placeholder-image.png" alt="3.5e spellbook logo" />
+      <h1>Best Spell Manager for D&D 3.5e</h1>
       <Button type="button" size="lg" className="copy-btn" onClick={signIn}>
         Sign In
       </Button>
