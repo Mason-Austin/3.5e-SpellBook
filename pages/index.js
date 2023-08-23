@@ -27,7 +27,7 @@ function Home() {
         <CharacterCard key={character.firebaseKey} characterObj={character} onUpdate={getAllCharacters} />
       ))}
       <Link passHref href="/character/new">
-        <FaPlusCircle />
+        <FaPlusCircle className="icon-plus" />
       </Link>
     </div>
   );
