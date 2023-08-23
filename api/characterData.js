@@ -33,7 +33,20 @@ const createCharacter = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getSingleCharacter = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/characters/${firebaseKey}.json`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
 export {
   getCharacters,
   createCharacter,
+  getSingleCharacter,
 };
