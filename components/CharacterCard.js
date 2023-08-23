@@ -6,10 +6,18 @@ import { FaTrashAlt } from 'react-icons/fa';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { getSingleClass } from '../api/classData';
+import { deleteSingleCharacter } from '../api/characterData';
 
-function CharacterCard({ characterObj }) {
+function CharacterCard({ characterObj, onUpdate }) {
   const [characterClass, setCharacterClass] = useState({});
   const router = useRouter();
+
+  const deleteThisCharacter = () => {
+    if (window.confirm(`Delete ${characterObj.name}?`)) {
+      deleteSingleCharacter(characterObj.firebaseKey).then(() => onUpdate());
+    }
+  };
+
   const getCharacterClass = () => {
     getSingleClass(characterObj.character_class).then(setCharacterClass);
   };
@@ -25,7 +33,7 @@ function CharacterCard({ characterObj }) {
         <h2>{characterObj.name}</h2>
         <h3>{characterClass.name}</h3>
         <h3>Level {characterObj.level}</h3>
-        <FaTrashAlt />
+        <FaTrashAlt onClick={deleteThisCharacter} />
       </Card.Body>
     </Card>
   );
@@ -38,6 +46,7 @@ CharacterCard.propTypes = {
     level: PropTypes.number,
     firebaseKey: PropTypes.string,
   }).isRequired,
+  onUpdate: PropTypes.func.isRequired,
 };
 
 export default CharacterCard;
