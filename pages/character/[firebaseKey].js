@@ -1,6 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import { FaPlusCircle } from 'react-icons/fa';
+import Link from 'next/link';
 import getCharacterSpells from '../../api/mergedData';
 
 export default function ViewCharacter() {
@@ -23,6 +25,9 @@ export default function ViewCharacter() {
       {spells.map((spell) => (
         <h2>{spell}</h2>
       ))}
+      <Link passHref href={`/character/edit/${firebaseKey}`}>
+        <FaPlusCircle />
+      </Link>
     </div>
   );
 }
