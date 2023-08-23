@@ -26,7 +26,7 @@ function Home() {
       {characters.map((character) => (
         <CharacterCard key={character.firebaseKey} charcterObj={character} />
       ))}
-      <Link passHref href="/">
+      <Link passHref href="/character/new">
         <FaPlusCircle />
       </Link>
     </div>
