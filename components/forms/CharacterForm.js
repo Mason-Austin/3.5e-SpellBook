@@ -5,13 +5,13 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
 import { useAuth } from '../../utils/context/authContext';
-import getClasses from '../../api/classData';
 import { createCharacter, updateCharacter } from '../../api/characterData';
+import { getClasses } from '../../api/classData';
 
 const initialState = {
   name: '',
-  level: 0,
-  ability_score: 0,
+  level: '',
+  ability_score: '',
 };
 
 function CharacterForm({ obj }) {
@@ -99,12 +99,12 @@ function CharacterForm({ obj }) {
           value={obj.character_class} // FIXME: modify code to remove error
           required
         >
-          <option value="">Select an Author</option>
+          <option value="">Select a Class</option>
           {
             classes.map((characterClass) => (
               <option
                 key={characterClass.firebaseKey}
-                value={characterClass}
+                value={characterClass.firebaseKey}
               >
                 {characterClass.name}
               </option>
