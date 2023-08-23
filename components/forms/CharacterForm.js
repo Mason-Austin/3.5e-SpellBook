@@ -37,7 +37,7 @@ function CharacterForm({ obj }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (obj.firebaseKey) {
-      updateCharacter(formInput).then(() => router.push(`/character/${obj.firebaseKey}`));
+      updateCharacter(formInput).then(() => router.push('/'));
     } else {
       const payload = { ...formInput, uid: user.uid };
       createCharacter(payload).then(({ name }) => {
