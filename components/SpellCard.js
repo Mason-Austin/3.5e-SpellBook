@@ -1,9 +1,9 @@
 import Card from 'react-bootstrap/Card';
 
-function SpellCard() {
+function SpellCard(SpellName) {
   return (
     <Card>
-      <Card.Body>This is some text within a card body.</Card.Body>
+      <Card.Body>{SpellName}</Card.Body>
     </Card>
   );
 }
