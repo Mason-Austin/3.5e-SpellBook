@@ -26,7 +26,7 @@ export default function ViewCharacter() {
         <h2>{spell}</h2>
       ))}
       <Link passHref href={`/character/edit/${firebaseKey}`}>
-        <FaPlusCircle />
+        <FaPlusCircle className="icon-plus" />
       </Link>
     </div>
   );
