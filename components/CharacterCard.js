@@ -27,13 +27,17 @@ function CharacterCard({ characterObj, onUpdate }) {
   }, []);
 
   return (
-    <Card onClick={() => { router.push(`/character/${characterObj.firebaseKey}`); }}>
-      <Card.Body>
+    <Card className="character-card" onClick={() => { router.push(`/character/${characterObj.firebaseKey}`); }}>
+      <Card.Body className="character-body">
         <img src="https://d1vzi28wh99zvq.cloudfront.net/images/8957/210791-thumb140.png" alt="spellbook cover" />
-        <h2>{characterObj.name}</h2>
-        <h3>{characterClass.name}</h3>
-        <h3>Level {characterObj.level}</h3>
-        <FaTrashAlt onClick={deleteThisCharacter} />
+        <div style={{ width: '55%', marginLeft: '5%' }}>
+          <h2>{characterObj.name}</h2>
+          <div className="character-info">
+            <h3>{characterClass.name}</h3>
+            <h3>Level {characterObj.level}</h3>
+          </div>
+        </div>
+        <FaTrashAlt onClick={deleteThisCharacter} className="icon-trash" />
       </Card.Body>
     </Card>
   );

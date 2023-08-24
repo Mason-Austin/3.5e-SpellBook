@@ -21,14 +21,16 @@ function Home() {
   }, []);
 
   return (
-    <div>
+    <div style={{ margin: 'auto auto', width: '100%' }}>
       <h1>Characters</h1>
-      {characters.map((character) => (
-        <CharacterCard key={character.firebaseKey} characterObj={character} onUpdate={getAllCharacters} />
-      ))}
-      <Link passHref href="/character/new">
-        <FaPlusCircle className="icon-plus" />
-      </Link>
+      <div className="rw">
+        {characters.map((character) => (
+          <CharacterCard key={character.firebaseKey} characterObj={character} onUpdate={getAllCharacters} />
+        ))}
+        <Link passHref href="/character/new">
+          <FaPlusCircle className="icon-plus" />
+        </Link>
+      </div>
     </div>
   );
 }
