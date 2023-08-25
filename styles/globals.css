@@ -53,3 +53,71 @@ form {
   justify-content: space-between;
   margin-top: 15%;
 }
+
+.spell-card {
+  background-color: #1F2123;
+  color: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 10px;
+  width: calc(33.33% - 20px); /* 3 cards per row */
+  display: inline-block;
+  vertical-align: top;
+  box-sizing: border-box;
+}
+
+.spell-info {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.spell-card > h2 {
+  text-align: center;
+}
+
+.Abjuration {
+  background-color: gold;
+  color: black;
+}
+
+.Conjuration {
+  background-color: green;
+}
+
+.Divination {
+  background-color: white;
+  color: black;
+}
+
+.Enchantment {
+  background-color: teal;
+}
+
+.Evocation {
+  background-color: red;
+}
+
+.Illusion {
+  background: linear-gradient(45deg, #FF0000, #FFA500, #FFFF00, #008000, #0000FF, #4B0082, #9400D3);
+  background-size: 600% 600%;
+  animation: rainbowSlide 5s alternate linear infinite;
+}
+
+@keyframes rainbowSlide {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+.Necromancy {
+  background-color: #1F2123;
+}
+
+.Transmutation {
+  background-color: darkblue;
+}
