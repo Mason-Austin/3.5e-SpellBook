@@ -1,27 +1,40 @@
+import { useState } from 'react';
+import { FaSearch } from 'react-icons/fa';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
 function Search() {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
-    <div
-      className="modal show"
-      style={{ display: 'block', position: 'initial' }}
-    >
-      <Modal.Dialog>
+    <>
+      <FaSearch className="icon-search" onClick={handleShow} />
+
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+        style={{ color: 'black' }}
+      >
         <Modal.Header closeButton>
           <Modal.Title>Modal title</Modal.Title>
         </Modal.Header>
-
         <Modal.Body>
-          <p>Modal body text goes here.</p>
+          I will not close if you click outside me. Don not even try to press
+          escape key.
         </Modal.Body>
-
         <Modal.Footer>
-          <Button variant="secondary">Close</Button>
-          <Button variant="primary">Save changes</Button>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary">Understood</Button>
         </Modal.Footer>
-      </Modal.Dialog>
-    </div>
+      </Modal>
+    </>
   );
 }
 
