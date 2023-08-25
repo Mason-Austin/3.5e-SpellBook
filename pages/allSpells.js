@@ -5,16 +5,20 @@ import Search from '../components/Search';
 
 function ViewSpells() {
   const [spells, setSpells] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
-    getSpells().then(setSpells);
+    getSpells().then((allSpells) => {
+      setSpells(allSpells);
+      setSearchResults(allSpells);
+    });
   }, []);
 
   return (
     <>
       <h1>All Spells</h1>
-      <Search show="{show}" />
-      {spells.map((spell) => (
+      <Search contents={spells} setSearchResults={setSearchResults} />
+      {searchResults?.map((spell) => (
         <SpellCard key={spell.name} spellObj={spell} />
       ))}
     </>

@@ -84,7 +84,7 @@ SpellCard.propTypes = {
     table1: PropTypes.string,
     material_components: PropTypes.string,
     xp_cost: PropTypes.string,
-    spellcraft_dc: PropTypes.string,
+    spellcraft_dc: PropTypes.number,
     to_develop: PropTypes.string,
     focus: PropTypes.string,
     table2: PropTypes.string,
