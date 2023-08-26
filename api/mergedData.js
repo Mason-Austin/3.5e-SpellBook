@@ -1,13 +1,12 @@
 import { getSingleCharacter } from './characterData';
-import { getSingleClass } from './classData';
+import { getSingleSpell } from './spellData';
 
 const getCharacterSpells = (characterFirebaseKey) => new Promise((resolve, reject) => {
   getSingleCharacter(characterFirebaseKey)
     .then((characterObj) => {
-      getSingleClass(characterObj.character_class)
-        .then((classObj) => {
-          resolve(classObj.spells);
-        });
+      const getFavSpellsPromise = characterObj.favorite.map((spell) => getSingleSpell(spell));
+
+      Promise.allSettled(getFavSpellsPromise).then(resolve);
     }).catch((error) => reject(error));
 });
 
