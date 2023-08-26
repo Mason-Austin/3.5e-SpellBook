@@ -53,3 +53,8 @@ form {
   justify-content: space-between;
   margin-top: 15%;
 }
+
+.character-click {
+  display: flex;
+  width: 100%;
+}
