@@ -1,6 +1,8 @@
 @import 'bootstrap/dist/css/bootstrap.css';
 
-
+.filter-modal{
+  color: black;
+}
 
 body {
   padding: 0;
@@ -21,6 +23,14 @@ form {
   position: fixed;
   bottom: 1%;
   right: 1%;
+}
+
+.icon-search {
+  color: #1A74E2;
+  font-size: 7rem;
+  position: fixed;
+  bottom: 1%;
+  left: 1%;
 }
 
 .icon-trash{
