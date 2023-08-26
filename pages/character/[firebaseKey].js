@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { FaPlusCircle } from 'react-icons/fa';
 import Link from 'next/link';
+import SpellCard from '../../components/SpellCard';
 import getCharacterSpells from '../../api/mergedData';
 
 export default function ViewCharacter() {
@@ -23,7 +24,7 @@ export default function ViewCharacter() {
     <div>
       <h1>Known Spells</h1>
       {spells.map((spell) => (
-        <h2>{spell}</h2>
+        <SpellCard key={spell.name} spellObj={spell} />
       ))}
       <Link passHref href={`/character/edit/${firebaseKey}`}>
         <FaPlusCircle className="icon-plus" />

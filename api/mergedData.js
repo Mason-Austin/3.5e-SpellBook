@@ -6,7 +6,9 @@ const getCharacterSpells = (characterFirebaseKey) => new Promise((resolve, rejec
     .then((characterObj) => {
       const getFavSpellsPromise = characterObj.favorite.map((spell) => getSingleSpell(spell));
 
-      Promise.allSettled(getFavSpellsPromise).then(resolve);
+      Promise.all(getFavSpellsPromise).then((data) => {
+        resolve(Object.values(data));
+      });
     }).catch((error) => reject(error));
 });
 
