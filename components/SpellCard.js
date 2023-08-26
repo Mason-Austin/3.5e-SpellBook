@@ -1,10 +1,12 @@
+/* eslint-disable react/forbid-prop-types */
 /* eslint-disable prefer-template */
 /* eslint-disable react/no-danger */
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { Button } from 'react-bootstrap';
+// import { FaStar, FaRegStar } from 'react-icons/fa';
 
-function SpellCard({ spellObj }) {
+function SpellCard({ spellObj, characterObj }) {
   const [expanded, setExpanded] = useState(false);
 
   const toggleExpand = () => {
@@ -50,12 +52,10 @@ function SpellCard({ spellObj }) {
           {expanded ? 'Show Less' : 'Show More'}
         </Button>
       )}
+      {characterObj ? <Button>wow</Button> : ''}
     </div>
   );
 }
-
-// level
-// material_components
 
 // all tables
 // xpcost
@@ -90,4 +90,13 @@ SpellCard.propTypes = {
     table2: PropTypes.string,
     table3: PropTypes.string,
   }).isRequired,
+  characterObj: PropTypes.shape({
+    favorite: PropTypes.array,
+  }),
+};
+
+SpellCard.defaultProps = {
+  characterObj: PropTypes.shape({
+    favorite: false,
+  }),
 };
