@@ -6,12 +6,22 @@ import { useState } from 'react';
 import { Button } from 'react-bootstrap';
 // import { FaStar, FaRegStar } from 'react-icons/fa';
 
-function SpellCard({ spellObj, characterObj }) {
+function SpellCard({
+  spellObj,
+  //  characterObj
+}) {
   const [expanded, setExpanded] = useState(false);
 
   const toggleExpand = () => {
     setExpanded(!expanded);
   };
+
+  // const spellFavorite = () => {
+  //   if (!characterObj) {
+  //     if
+  //   }
+  //   return '';
+  // };
 
   const getDescription = () => {
     if (expanded || spellObj.description.length < 150) {
@@ -52,7 +62,8 @@ function SpellCard({ spellObj, characterObj }) {
           {expanded ? 'Show Less' : 'Show More'}
         </Button>
       )}
-      {characterObj ? <Button>wow</Button> : ''}
+      {/* {spellFavorite()} */}
+      {/* {characterObj ? <Button>wow</Button> : ''} */}
     </div>
   );
 }
@@ -96,7 +107,5 @@ SpellCard.propTypes = {
 };
 
 SpellCard.defaultProps = {
-  characterObj: PropTypes.shape({
-    favorite: false,
-  }),
+  characterObj: '',
 };

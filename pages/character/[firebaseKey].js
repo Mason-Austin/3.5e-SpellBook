@@ -3,13 +3,14 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { FaPlusCircle } from 'react-icons/fa';
 import Link from 'next/link';
+import { Button } from 'react-bootstrap';
 import SpellCard from '../../components/SpellCard';
 import getCharacterSpells from '../../api/mergedData';
 import { getSingleCharacter } from '../../api/characterData';
 
 export default function ViewCharacter() {
   const [spells, setSpells] = useState([]);
-  const [character, setCharacter] = useState([]);
+  const [character, setCharacter] = useState({});
   const router = useRouter();
 
   const { firebaseKey } = router.query;
@@ -25,7 +26,10 @@ export default function ViewCharacter() {
   console.warn(spells);
   return (
     <div>
-      <h1>Known Spells</h1>
+      <Link passHref href={`/character/spell/${firebaseKey}`}>
+        <Button>Known Spells</Button>
+      </Link>
+      <h1>Prepared Spells</h1>
       {spells.map((spell) => (
         <SpellCard key={spell.name} spellObj={spell} characterObj={character} />
       ))}

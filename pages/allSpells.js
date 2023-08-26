@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import getSpells from '../api/spellData';
+import { getSpells } from '../api/spellData';
 import SpellCard from '../components/SpellCard';
 import Search from '../components/Search';
 
