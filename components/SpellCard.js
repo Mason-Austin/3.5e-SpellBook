@@ -1,14 +1,54 @@
+/* eslint-disable react/forbid-prop-types */
 /* eslint-disable prefer-template */
 /* eslint-disable react/no-danger */
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { Button } from 'react-bootstrap';
+import { FaStar, FaRegStar } from 'react-icons/fa';
+import { updateCharacter } from '../api/characterData';
+// import { updateCharacter } from '../api/characterData';
 
-function SpellCard({ spellObj }) {
+function SpellCard({ spellObj, characterObj, setCharacter }) {
   const [expanded, setExpanded] = useState(false);
-
   const toggleExpand = () => {
     setExpanded(!expanded);
+  };
+
+  const toggleFavorite = () => {
+    if (characterObj.favorite?.includes(spellObj.name)) {
+      const newfavArry = characterObj.favorite.filter((spell) => spell !== spellObj.name);
+      const payload = ({
+        ...characterObj,
+        favorite: newfavArry,
+      });
+      updateCharacter(payload);
+      setCharacter({
+        ...characterObj,
+        favorite: newfavArry,
+      });
+    } else {
+      const newfavArry = [...characterObj.favorite];
+      newfavArry.push(spellObj.name);
+      const payload = ({
+        ...characterObj,
+        favorite: newfavArry,
+      });
+      updateCharacter(payload);
+      setCharacter({
+        ...characterObj,
+        favorite: newfavArry,
+      });
+    }
+  };
+
+  const spellFavorite = () => {
+    if (characterObj) {
+      if (characterObj.favorite?.includes(spellObj.name)) {
+        return <FaStar onClick={toggleFavorite} className="star-icon" />;
+      }
+      return <FaRegStar onClick={toggleFavorite} className="star-icon" />;
+    }
+    return '';
   };
 
   const getDescription = () => {
@@ -50,12 +90,10 @@ function SpellCard({ spellObj }) {
           {expanded ? 'Show Less' : 'Show More'}
         </Button>
       )}
+      {spellFavorite()}
     </div>
   );
 }
-
-// level
-// material_components
 
 // all tables
 // xpcost
@@ -90,4 +128,13 @@ SpellCard.propTypes = {
     table2: PropTypes.string,
     table3: PropTypes.string,
   }).isRequired,
+  characterObj: PropTypes.shape({
+    favorite: PropTypes.array,
+  }),
+  setCharacter: PropTypes.func,
+};
+
+SpellCard.defaultProps = {
+  characterObj: null,
+  setCharacter: null,
 };
