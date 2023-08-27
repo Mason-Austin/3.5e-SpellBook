@@ -4,24 +4,52 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { Button } from 'react-bootstrap';
-// import { FaStar, FaRegStar } from 'react-icons/fa';
+import { FaStar, FaRegStar } from 'react-icons/fa';
+import { updateCharacter } from '../api/characterData';
+// import { updateCharacter } from '../api/characterData';
 
-function SpellCard({
-  spellObj,
-  //  characterObj
-}) {
+function SpellCard({ spellObj, characterObj, setCharacter }) {
   const [expanded, setExpanded] = useState(false);
-
   const toggleExpand = () => {
     setExpanded(!expanded);
   };
 
-  // const spellFavorite = () => {
-  //   if (!characterObj) {
-  //     if
-  //   }
-  //   return '';
-  // };
+  const toggleFavorite = () => {
+    if (characterObj.favorite?.includes(spellObj.name)) {
+      const newfavArry = characterObj.favorite.filter((spell) => spell !== spellObj.name);
+      const payload = ({
+        ...characterObj,
+        favorite: newfavArry,
+      });
+      updateCharacter(payload);
+      setCharacter({
+        ...characterObj,
+        favorite: newfavArry,
+      });
+    } else {
+      const newfavArry = [...characterObj.favorite];
+      newfavArry.push(spellObj.name);
+      const payload = ({
+        ...characterObj,
+        favorite: newfavArry,
+      });
+      updateCharacter(payload);
+      setCharacter({
+        ...characterObj,
+        favorite: newfavArry,
+      });
+    }
+  };
+
+  const spellFavorite = () => {
+    if (characterObj) {
+      if (characterObj.favorite?.includes(spellObj.name)) {
+        return <FaStar onClick={toggleFavorite} />;
+      }
+      return <FaRegStar onClick={toggleFavorite} />;
+    }
+    return '';
+  };
 
   const getDescription = () => {
     if (expanded || spellObj.description.length < 150) {
@@ -62,8 +90,7 @@ function SpellCard({
           {expanded ? 'Show Less' : 'Show More'}
         </Button>
       )}
-      {/* {spellFavorite()} */}
-      {/* {characterObj ? <Button>wow</Button> : ''} */}
+      {spellFavorite()}
     </div>
   );
 }
@@ -104,8 +131,10 @@ SpellCard.propTypes = {
   characterObj: PropTypes.shape({
     favorite: PropTypes.array,
   }),
+  setCharacter: PropTypes.func,
 };
 
 SpellCard.defaultProps = {
-  characterObj: '',
+  characterObj: null,
+  setCharacter: null,
 };

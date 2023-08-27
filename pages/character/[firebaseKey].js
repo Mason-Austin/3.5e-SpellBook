@@ -23,7 +23,6 @@ export default function ViewCharacter() {
   useEffect(() => {
     setCharacterSpells();
   }, [firebaseKey]);
-  console.warn(spells);
   return (
     <div>
       <Link passHref href={`/character/spell/${firebaseKey}`}>
