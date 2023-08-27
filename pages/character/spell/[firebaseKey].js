@@ -26,10 +26,12 @@ function ViewKnownSpells() {
 
   return (
     <>
-      <Link passHref href={`/character/${firebaseKey}`}>
-        <Button>Prepared Spells</Button>
-      </Link>
-      <h1>Known Spells</h1>
+      <div className="spell-link-btn">
+        <h1>Known Spells</h1>
+        <Link passHref href={`/character/${firebaseKey}`}>
+          <Button className="link-btn">Prepared Spells</Button>
+        </Link>
+      </div>
       <Search contents={spells} setSearchResults={setSearchResults} />
       {searchResults?.map((spell) => (
         <SpellCard key={spell.name} spellObj={spell} characterObj={character} setCharacter={setCharacter} />

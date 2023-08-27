@@ -25,10 +25,12 @@ export default function ViewCharacter() {
   }, [firebaseKey]);
   return (
     <div>
-      <Link passHref href={`/character/spell/${firebaseKey}`}>
-        <Button>Known Spells</Button>
-      </Link>
-      <h1>Prepared Spells</h1>
+      <div className="spell-link-btn">
+        <h1>Prepared Spells</h1>
+        <Link passHref href={`/character/spell/${firebaseKey}`}>
+          <Button>Known Spells</Button>
+        </Link>
+      </div>
       {spells.map((spell) => (
         <SpellCard key={spell.name} spellObj={spell} characterObj={character} />
       ))}

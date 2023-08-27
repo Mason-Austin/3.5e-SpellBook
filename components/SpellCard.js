@@ -44,9 +44,9 @@ function SpellCard({ spellObj, characterObj, setCharacter }) {
   const spellFavorite = () => {
     if (characterObj) {
       if (characterObj.favorite?.includes(spellObj.name)) {
-        return <FaStar onClick={toggleFavorite} />;
+        return <FaStar onClick={toggleFavorite} className="star-icon" />;
       }
-      return <FaRegStar onClick={toggleFavorite} />;
+      return <FaRegStar onClick={toggleFavorite} className="star-icon" />;
     }
     return '';
   };
