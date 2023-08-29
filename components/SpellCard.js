@@ -8,7 +8,12 @@ import { FaStar, FaRegStar } from 'react-icons/fa';
 import { updateCharacter } from '../api/characterData';
 // import { updateCharacter } from '../api/characterData';
 
-function SpellCard({ spellObj, characterObj, setCharacter }) {
+function SpellCard({
+  spellObj,
+  characterObj,
+  setCharacter,
+  onUpdate,
+}) {
   const [expanded, setExpanded] = useState(false);
   const toggleExpand = () => {
     setExpanded(!expanded);
@@ -26,8 +31,11 @@ function SpellCard({ spellObj, characterObj, setCharacter }) {
         ...characterObj,
         favorite: newfavArry,
       });
+      if (onUpdate) {
+        onUpdate();
+      }
     } else {
-      const newfavArry = [...characterObj.favorite];
+      const newfavArry = [...(characterObj.favorite || [])];
       newfavArry.push(spellObj.name);
       const payload = ({
         ...characterObj,
@@ -38,6 +46,9 @@ function SpellCard({ spellObj, characterObj, setCharacter }) {
         ...characterObj,
         favorite: newfavArry,
       });
+      if (onUpdate) {
+        onUpdate();
+      }
     }
   };
 
@@ -132,9 +143,11 @@ SpellCard.propTypes = {
     favorite: PropTypes.array,
   }),
   setCharacter: PropTypes.func,
+  onUpdate: PropTypes.func,
 };
 
 SpellCard.defaultProps = {
   characterObj: null,
   setCharacter: null,
+  onUpdate: null,
 };

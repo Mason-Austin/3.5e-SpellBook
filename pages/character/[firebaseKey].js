@@ -5,23 +5,26 @@ import { FaPlusCircle } from 'react-icons/fa';
 import Link from 'next/link';
 import { Button } from 'react-bootstrap';
 import SpellCard from '../../components/SpellCard';
-import getCharacterSpells from '../../api/mergedData';
-import { getSingleCharacter } from '../../api/characterData';
+import { getCharacterSpells } from '../../api/mergedData';
+import Search from '../../components/Search';
 
 export default function ViewCharacter() {
   const [spells, setSpells] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
   const [character, setCharacter] = useState({});
   const router = useRouter();
-
   const { firebaseKey } = router.query;
 
-  const setCharacterSpells = () => {
-    getSingleCharacter(firebaseKey).then(setCharacter);
-    getCharacterSpells(firebaseKey).then(setSpells);
+  const getAllCharacterSpells = () => {
+    getCharacterSpells(firebaseKey).then((data) => {
+      setSpells(data.spellArry);
+      setSearchResults(data.spellArry);
+      setCharacter(data.characterObj);
+    });
   };
 
   useEffect(() => {
-    setCharacterSpells();
+    getAllCharacterSpells();
   }, [firebaseKey]);
   return (
     <div>
@@ -31,8 +34,9 @@ export default function ViewCharacter() {
           <Button>Known Spells</Button>
         </Link>
       </div>
-      {spells.map((spell) => (
-        <SpellCard key={spell.name} spellObj={spell} characterObj={character} />
+      <Search contents={spells} setSearchResults={setSearchResults} />
+      {searchResults?.map((spell) => (
+        <SpellCard key={spell.name} spellObj={spell} characterObj={character} setCharacter={setCharacter} onUpdate={getAllCharacterSpells} />
       ))}
       <Link passHref href={`/character/edit/${firebaseKey}`}>
         <FaPlusCircle className="icon-plus" />
