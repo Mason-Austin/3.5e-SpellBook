@@ -13,14 +13,12 @@ function ViewKnownSpells() {
   const [spells, setSpells] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
   const [character, setCharacter] = useState({});
-  // const [characterClass, setCharacterClass] = useState({});
   const router = useRouter();
   const { firebaseKey } = router.query;
 
   useEffect(() => {
     getCharacterClassSpells(firebaseKey).then((data) => {
       const { spellArry, classObj, characterObj } = data;
-      console.warn(classObj, characterObj);
       const filteredSpells = classSpellFilter(spellArry, classObj, characterObj);
       setCharacter(characterObj);
       // setCharacterClass(classObj);
