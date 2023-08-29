@@ -4,23 +4,28 @@ import { useRouter } from 'next/router';
 import { FaPlusCircle } from 'react-icons/fa';
 import Link from 'next/link';
 import { Button } from 'react-bootstrap';
-import { getSpells } from '../../../api/spellData';
 import SpellCard from '../../../components/SpellCard';
 import Search from '../../../components/Search';
-import { getSingleCharacter } from '../../../api/characterData';
+import { getCharacterClassSpells } from '../../../api/mergedData';
+import classSpellFilter from '../../../utils/classSpellFilter';
 
 function ViewKnownSpells() {
   const [spells, setSpells] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
   const [character, setCharacter] = useState({});
+  // const [characterClass, setCharacterClass] = useState({});
   const router = useRouter();
   const { firebaseKey } = router.query;
 
   useEffect(() => {
-    getSingleCharacter(firebaseKey).then(setCharacter);
-    getSpells().then((allSpells) => {
-      setSpells(allSpells);
-      setSearchResults(allSpells);
+    getCharacterClassSpells(firebaseKey).then((data) => {
+      const { spellArry, classObj, characterObj } = data;
+      console.warn(classObj, characterObj);
+      const filteredSpells = classSpellFilter(spellArry, classObj, characterObj);
+      setCharacter(characterObj);
+      // setCharacterClass(classObj);
+      setSpells(filteredSpells);
+      setSearchResults(filteredSpells);
     });
   }, [firebaseKey]);
 

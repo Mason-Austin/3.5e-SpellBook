@@ -1,5 +1,6 @@
 import { getSingleCharacter } from './characterData';
-import { getSingleSpell } from './spellData';
+import { getSingleSpell, getSpells } from './spellData';
+import { getSingleClass } from './classData';
 
 const getCharacterSpells = (characterFirebaseKey) => new Promise((resolve, reject) => {
   getSingleCharacter(characterFirebaseKey)
@@ -8,7 +9,8 @@ const getCharacterSpells = (characterFirebaseKey) => new Promise((resolve, rejec
         const getFavSpellsPromise = characterObj.favorite.map((spell) => getSingleSpell(spell));
 
         Promise.all(getFavSpellsPromise).then((data) => {
-          resolve(Object.values(data));
+          const spellArry = Object.values(data);
+          resolve({ characterObj, spellArry });
         });
       } else {
         resolve([]);
@@ -16,4 +18,17 @@ const getCharacterSpells = (characterFirebaseKey) => new Promise((resolve, rejec
     }).catch((error) => reject(error));
 });
 
-export default getCharacterSpells;
+const getCharacterClassSpells = (characterFirebaseKey) => new Promise((resolve, reject) => {
+  getSingleCharacter(characterFirebaseKey)
+    .then((characterObj) => {
+      getSingleClass(characterObj.character_class)
+        .then((classObj) => {
+          getSpells().then((data) => {
+            const spellArry = Object.values(data);
+            resolve({ characterObj, classObj, spellArry });
+          });
+        });
+    }).catch((error) => reject(error));
+});
+
+export { getCharacterSpells, getCharacterClassSpells };

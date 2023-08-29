@@ -5,9 +5,8 @@ import { FaPlusCircle } from 'react-icons/fa';
 import Link from 'next/link';
 import { Button } from 'react-bootstrap';
 import SpellCard from '../../components/SpellCard';
-import getCharacterSpells from '../../api/mergedData';
+import { getCharacterSpells } from '../../api/mergedData';
 import Search from '../../components/Search';
-import { getSingleCharacter } from '../../api/characterData';
 
 export default function ViewCharacter() {
   const [spells, setSpells] = useState([]);
@@ -17,14 +16,14 @@ export default function ViewCharacter() {
   const { firebaseKey } = router.query;
 
   const getAllCharacterSpells = () => {
-    getCharacterSpells(firebaseKey).then((allSpells) => {
-      setSpells(allSpells);
-      setSearchResults(allSpells);
+    getCharacterSpells(firebaseKey).then((data) => {
+      setSpells(data.spellArry);
+      setSearchResults(data.spellArry);
+      setCharacter(data.characterObj);
     });
   };
 
   useEffect(() => {
-    getSingleCharacter(firebaseKey).then(setCharacter);
     getAllCharacterSpells();
   }, [firebaseKey]);
   return (
