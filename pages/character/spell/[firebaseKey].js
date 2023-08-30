@@ -36,9 +36,13 @@ function ViewKnownSpells() {
         </Link>
       </div>
       <Search contents={spells} setSearchResults={setSearchResults} />
-      {searchResults?.map((spell) => (
-        <SpellCard key={spell.name} spellObj={spell} characterObj={character} setCharacter={setCharacter} />
-      ))}
+      {searchResults && searchResults.length > 0 ? (
+        searchResults.map((spell) => (
+          <SpellCard key={spell.name} spellObj={spell} characterObj={character} setCharacter={setCharacter} />
+        ))
+      ) : (
+        <h1>No spells found</h1>
+      )}
       <Link passHref href={`/character/edit/${firebaseKey}`}>
         <FaPlusCircle className="icon-plus" />
       </Link>
