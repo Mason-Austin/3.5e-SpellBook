@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { FaPlusCircle } from 'react-icons/fa';
 import Link from 'next/link';
 import { Button } from 'react-bootstrap';
+import MenuModal from '../../components/MenuModal';
 import SpellCard from '../../components/SpellCard';
 import { getCharacterSpells } from '../../api/mergedData';
 import Search from '../../components/Search';
@@ -28,6 +28,7 @@ export default function ViewCharacter() {
   }, [firebaseKey]);
   return (
     <div>
+      <MenuModal firebaseKey={firebaseKey} />
       <div className="spell-link-btn">
         <h1>Prepared Spells</h1>
         <Link passHref href={`/character/spell/${firebaseKey}`}>
@@ -38,9 +39,6 @@ export default function ViewCharacter() {
       {searchResults?.map((spell) => (
         <SpellCard key={spell.name} spellObj={spell} characterObj={character} setCharacter={setCharacter} onUpdate={getAllCharacterSpells} />
       ))}
-      <Link passHref href={`/character/edit/${firebaseKey}`}>
-        <FaPlusCircle className="icon-plus" />
-      </Link>
     </div>
   );
 }

@@ -150,3 +150,10 @@ form {
   justify-content: space-between;
   align-items: center;
 }
+
+.menu-group {
+  width: 15%;
+  position: fixed;
+  bottom: 15%;
+  right: 1%;
+}

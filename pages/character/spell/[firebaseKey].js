@@ -1,13 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { FaPlusCircle } from 'react-icons/fa';
+// import { FaPlusCircle } from 'react-icons/fa';
 import Link from 'next/link';
 import { Button } from 'react-bootstrap';
 import SpellCard from '../../../components/SpellCard';
 import Search from '../../../components/Search';
 import { getCharacterClassSpells } from '../../../api/mergedData';
 import classSpellFilter from '../../../utils/classSpellFilter';
+import MenuModal from '../../../components/MenuModal';
 
 function ViewKnownSpells() {
   const [spells, setSpells] = useState([]);
@@ -29,6 +30,7 @@ function ViewKnownSpells() {
 
   return (
     <>
+      <MenuModal firebaseKey={firebaseKey} />
       <div className="spell-link-btn">
         <h1>Known Spells</h1>
         <Link passHref href={`/character/${firebaseKey}`}>
@@ -43,9 +45,9 @@ function ViewKnownSpells() {
       ) : (
         <h1>No spells found</h1>
       )}
-      <Link passHref href={`/character/edit/${firebaseKey}`}>
+      {/* <Link passHref href={`/character/edit/${firebaseKey}`}>
         <FaPlusCircle className="icon-plus" />
-      </Link>
+      </Link> */}
     </>
   );
 }
