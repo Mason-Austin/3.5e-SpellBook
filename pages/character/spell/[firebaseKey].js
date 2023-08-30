@@ -8,7 +8,6 @@ import SpellCard from '../../../components/SpellCard';
 import Search from '../../../components/Search';
 import { getCharacterClassSpells } from '../../../api/mergedData';
 import classSpellFilter from '../../../utils/classSpellFilter';
-import MenuModal from '../../../components/MenuModal';
 
 function ViewKnownSpells() {
   const [spells, setSpells] = useState([]);
@@ -30,7 +29,6 @@ function ViewKnownSpells() {
 
   return (
     <>
-      <MenuModal firebaseKey={firebaseKey} />
       <div className="spell-link-btn">
         <h1>Known Spells</h1>
         <Link passHref href={`/character/${firebaseKey}`}>

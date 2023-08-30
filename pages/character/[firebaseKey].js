@@ -3,10 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { Button } from 'react-bootstrap';
-import MenuModal from '../../components/MenuModal';
 import SpellCard from '../../components/SpellCard';
 import { getCharacterSpells } from '../../api/mergedData';
 import Search from '../../components/Search';
+import MenuDropUp from '../../components/MenuDropUp';
 
 export default function ViewCharacter() {
   const [spells, setSpells] = useState([]);
@@ -28,12 +28,14 @@ export default function ViewCharacter() {
   }, [firebaseKey]);
   return (
     <div>
-      <MenuModal firebaseKey={firebaseKey} />
       <div className="spell-link-btn">
         <h1>Prepared Spells</h1>
-        <Link passHref href={`/character/spell/${firebaseKey}`}>
-          <Button>Known Spells</Button>
-        </Link>
+        <div>
+          <Link passHref href={`/character/spell/${firebaseKey}`}>
+            <Button>Known Spells</Button>
+          </Link>
+          <MenuDropUp firebaseKey={firebaseKey} />
+        </div>
       </div>
       <Search contents={spells} setSearchResults={setSearchResults} />
       {searchResults?.map((spell) => (
