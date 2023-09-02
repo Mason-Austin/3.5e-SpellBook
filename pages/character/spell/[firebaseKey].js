@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-// import { FaPlusCircle } from 'react-icons/fa';
 import Link from 'next/link';
 import { Button } from 'react-bootstrap';
+import MenuDropUp from '../../../components/MenuDropUp';
 import SpellCard from '../../../components/SpellCard';
 import Search from '../../../components/Search';
 import { getCharacterClassSpells } from '../../../api/mergedData';
@@ -31,9 +31,12 @@ function ViewKnownSpells() {
     <>
       <div className="spell-link-btn">
         <h1>Known Spells</h1>
-        <Link passHref href={`/character/${firebaseKey}`}>
-          <Button className="link-btn">Prepared Spells</Button>
-        </Link>
+        <div className="rw">
+          <Link passHref href={`/character/${firebaseKey}`}>
+            <Button className="link-btn">Prepared Spells</Button>
+          </Link>
+          <MenuDropUp firebaseKey={firebaseKey} />
+        </div>
       </div>
       <Search contents={spells} setSearchResults={setSearchResults} />
       {searchResults && searchResults.length > 0 ? (
@@ -43,9 +46,6 @@ function ViewKnownSpells() {
       ) : (
         <h1>No spells found</h1>
       )}
-      {/* <Link passHref href={`/character/edit/${firebaseKey}`}>
-        <FaPlusCircle className="icon-plus" />
-      </Link> */}
     </>
   );
 }

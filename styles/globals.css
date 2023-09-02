@@ -43,6 +43,11 @@ form {
   flex-flow: row wrap;
 }
 
+.rnw{
+  display: flex;
+  flex-flow: row nowrap;
+}
+
 .card-body {
   display: flex;
   flex-wrap: nowrap;
@@ -148,4 +153,8 @@ form {
   position: fixed;
   bottom: 15%;
   right: 1%;
+}
+
+modal {
+  background-color: red;
 }

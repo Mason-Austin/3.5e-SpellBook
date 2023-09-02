@@ -30,7 +30,7 @@ export default function ViewCharacter() {
     <div>
       <div className="spell-link-btn">
         <h1>Prepared Spells</h1>
-        <div>
+        <div className="rw">
           <Link passHref href={`/character/spell/${firebaseKey}`}>
             <Button>Known Spells</Button>
           </Link>

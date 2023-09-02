@@ -2,6 +2,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import PropTypes from 'prop-types';
 import { ButtonGroup } from 'react-bootstrap';
+import SpellManagerModal from './SpellMangerModal';
 
 function MenuDropUp({ firebaseKey }) {
   return (
@@ -16,7 +17,7 @@ function MenuDropUp({ firebaseKey }) {
           title="Menu"
         >
           <Dropdown.Item href={`/character/edit/${firebaseKey}`}>Edit Character</Dropdown.Item>
-          <Dropdown.Item>Spell Slots</Dropdown.Item>
+          <Dropdown.Item><SpellManagerModal /></Dropdown.Item>
         </DropdownButton>
       </div>
     </>
