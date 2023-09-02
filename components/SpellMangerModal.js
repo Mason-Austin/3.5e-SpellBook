@@ -29,7 +29,8 @@ function SpellManagerModal() {
         <Modal.Header closeButton>
           <Modal.Title>Spell Manager</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className="rw">
+          <SpellSlot />
           <SpellSlot />
         </Modal.Body>
         <Modal.Footer>
