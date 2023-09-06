@@ -71,39 +71,6 @@ function CharacterForm({ obj }) {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    // if (name === 'character_class') {
-    //   const selectedClass = classes.find((Class) => Class.firebaseKey === value);
-    //   const spellSlots = selectedClass.spell_prog[formInput.level];
-    //   const newSpellSlots = addSpellArrays(spellSlots, modiferSpellArray, ((formInput.ability_score - 10) / 2));
-    //   setFormInput((prevState) => ({
-    //     ...prevState,
-    //     spell_slots: newSpellSlots,
-    //     [name]: value,
-    //   }));
-    // } else if (name === 'level') {
-    //   const selectedClass = classes.find((Class) => Class.firebaseKey === formInput.character_class);
-    //   const spellSlots = selectedClass.spell_prog[value];
-    //   const newSpellSlots = addSpellArrays(spellSlots, modiferSpellArray, ((formInput.ability_score - 10) / 2));
-    //   setFormInput((prevState) => ({
-    //     ...prevState,
-    //     spell_slots: newSpellSlots,
-    //     [name]: value,
-    //   }));
-    // } else if (name === 'ability_score') {
-    //   const selectedClass = classes.find((Class) => Class.firebaseKey === formInput.character_class);
-    //   const spellSlots = selectedClass.spell_prog[formInput.level];
-    //   const newSpellSlots = addSpellArrays(spellSlots, modiferSpellArray, ((value - 10) / 2));
-    //   setFormInput((prevState) => ({
-    //     ...prevState,
-    //     spell_slots: newSpellSlots,
-    //     [name]: value,
-    //   }));
-    // } else {
-    //   setFormInput((prevState) => ({
-    //     ...prevState,
-    //     [name]: value,
-    //   }));
-    // }
     setFormInput((prevState) => ({
       ...prevState,
       [name]: value,
@@ -115,14 +82,13 @@ function CharacterForm({ obj }) {
     const selectedClass = classes.find((Class) => Class.firebaseKey === formInput.character_class);
     const spellSlots = selectedClass.spell_prog[formInput.level];
     const newSpellSlots = addSpellArrays(spellSlots, modiferSpellArray, ((formInput.ability_score - 10) / 2));
-    console.warn('selectedClass', selectedClass);
-    console.warn('spellSlots', spellSlots);
-    console.warn('newSpellSlots', newSpellSlots);
     if (obj.firebaseKey) {
-      const payload = { ...formInput, spell_slots: newSpellSlots };
+      const payload = { ...formInput, spell_slots: newSpellSlots, max_spell_slots: newSpellSlots };
       updateCharacter(payload).then(() => router.push('/'));
     } else {
-      const payload = { ...formInput, uid: user.uid, spell_slots: newSpellSlots };
+      const payload = {
+        ...formInput, uid: user.uid, spell_slots: newSpellSlots, max_spell_slots: newSpellSlots,
+      };
       createCharacter(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
         updateCharacter(patchPayload).then(() => {

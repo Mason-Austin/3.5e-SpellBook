@@ -6,7 +6,7 @@ import Modal from 'react-bootstrap/Modal';
 import PropTypes from 'prop-types';
 import SpellSlot from './SpellSlot';
 
-function SpellManagerModal({ characterObj, classObj }) {
+function SpellManagerModal({ characterObj }) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -31,7 +31,9 @@ function SpellManagerModal({ characterObj, classObj }) {
         </Modal.Header>
         <Modal.Body className="rw">
           {characterObj.spell_slots?.map((spellLevel, index) => (
-            <SpellSlot currentSpellSlot={spellLevel} maxSpellSlot={classObj.spell_prog[characterObj.level][index]} />
+            spellLevel !== null ? (
+              <SpellSlot currentSpellSlot={spellLevel} maxSpellSlot={characterObj.max_spell_slots[index]} />
+            ) : null
           ))}
         </Modal.Body>
         <Modal.Footer>

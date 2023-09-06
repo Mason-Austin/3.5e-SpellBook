@@ -12,7 +12,6 @@ export default function ViewCharacter() {
   const [spells, setSpells] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
   const [character, setCharacter] = useState({});
-  const [classObj, setClassObj] = useState({});
   const router = useRouter();
   const { firebaseKey } = router.query;
   const getAllCharacterSpells = () => {
@@ -20,7 +19,6 @@ export default function ViewCharacter() {
       setSpells(data.spellArry);
       setSearchResults(data.spellArry);
       setCharacter(data.characterObj);
-      setClassObj(data.classObj);
     });
   };
 
@@ -35,7 +33,7 @@ export default function ViewCharacter() {
           <Link passHref href={`/character/spell/${firebaseKey}`}>
             <Button>Known Spells</Button>
           </Link>
-          <MenuDropUp firebaseKey={firebaseKey} characterObj={character} classObj={classObj} />
+          <MenuDropUp firebaseKey={firebaseKey} characterObj={character} />
         </div>
       </div>
       <Search contents={spells} setSearchResults={setSearchResults} />
