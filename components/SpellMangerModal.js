@@ -3,14 +3,14 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import PropTypes from 'prop-types';
 import SpellSlot from './SpellSlot';
 
-function SpellManagerModal() {
+function SpellManagerModal({ characterObj, classObj }) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
   return (
     <>
       {/* <Button variant="primary" onClick={handleShow}>
@@ -30,8 +30,9 @@ function SpellManagerModal() {
           <Modal.Title>Spell Manager</Modal.Title>
         </Modal.Header>
         <Modal.Body className="rw">
-          <SpellSlot />
-          <SpellSlot />
+          {characterObj.spell_slots.map((spellLevel, index) => (
+            <SpellSlot currentSpellSlot={spellLevel} maxSpellSlot={classObj.spell_prog[characterObj.level][index]} />
+          ))}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
@@ -45,3 +46,7 @@ function SpellManagerModal() {
 }
 
 export default SpellManagerModal;
+
+SpellManagerModal.propTypes = {
+  characterObj: PropTypes.object,
+}.isRequired;
