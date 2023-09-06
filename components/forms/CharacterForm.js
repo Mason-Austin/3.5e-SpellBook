@@ -28,10 +28,28 @@ function CharacterForm({ obj }) {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormInput((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
+    if (name === 'character_class') {
+      const selectedClass = classes.find((Class) => Class.firebaseKey === value);
+      const newSpellSlots = selectedClass.spell_prog[formInput.level];
+      setFormInput((prevState) => ({
+        ...prevState,
+        spell_slots: newSpellSlots,
+        [name]: value,
+      }));
+    } else if (name === 'level') {
+      const selectedClass = classes.find((Class) => Class.firebaseKey === formInput.character_class);
+      const newSpellSlots = selectedClass.spell_prog[value];
+      setFormInput((prevState) => ({
+        ...prevState,
+        spell_slots: newSpellSlots,
+        [name]: value,
+      }));
+    } else {
+      setFormInput((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
+    }
   };
 
   const handleSubmit = (e) => {

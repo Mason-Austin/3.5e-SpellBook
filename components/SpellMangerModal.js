@@ -30,7 +30,7 @@ function SpellManagerModal({ characterObj, classObj }) {
           <Modal.Title>Spell Manager</Modal.Title>
         </Modal.Header>
         <Modal.Body className="rw">
-          {characterObj.spell_slots.map((spellLevel, index) => (
+          {characterObj.spell_slots?.map((spellLevel, index) => (
             <SpellSlot currentSpellSlot={spellLevel} maxSpellSlot={classObj.spell_prog[characterObj.level][index]} />
           ))}
         </Modal.Body>
