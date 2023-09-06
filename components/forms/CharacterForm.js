@@ -25,39 +25,104 @@ function CharacterForm({ obj }) {
 
     if (obj.firebaseKey) setFormInput(obj);
   }, [obj, user]);
+  const modiferSpellArray = [
+    [null],
+    [null, 1],
+    [null, 1, 1],
+    [null, 1, 1, 1],
+    [null, 1, 1, 1, 1],
+    [null, 2, 1, 1, 1, 1],
+    [null, 2, 2, 1, 1, 1, 1],
+    [null, 2, 2, 2, 1, 1, 1, 1],
+    [null, 2, 2, 2, 2, 1, 1, 1, 1],
+    [null, 3, 2, 2, 2, 2, 1, 1, 1, 1],
+    [null, 3, 3, 2, 2, 2, 2, 1, 1, 1],
+    [null, 3, 3, 3, 2, 2, 2, 2, 1, 1],
+    [null, 3, 3, 3, 3, 2, 2, 2, 2, 1],
+    [null, 4, 3, 3, 3, 3, 2, 2, 2, 2],
+    [null, 4, 4, 3, 3, 3, 3, 2, 2, 2],
+    [null, 4, 4, 4, 3, 3, 3, 3, 2, 2],
+    [null, 4, 4, 4, 4, 3, 3, 3, 3, 2],
+    [null, 5, 4, 4, 4, 4, 3, 3, 3, 3],
+    [null, 5, 5, 4, 4, 4, 4, 3, 3, 3],
+    [null, 5, 5, 5, 4, 4, 4, 4, 3, 3],
+    [null, 5, 5, 5, 5, 4, 4, 4, 4, 3],
+    [null, 6, 5, 5, 5, 5, 4, 4, 4, 4],
+    [null, 6, 6, 5, 5, 5, 5, 4, 4, 4],
+    [null, 6, 6, 6, 5, 5, 5, 5, 4, 4],
+    [null, 6, 6, 6, 6, 5, 5, 5, 5, 4],
+    [null, 7, 6, 6, 6, 6, 5, 5, 5, 5],
+    [null, 7, 7, 6, 6, 6, 6, 5, 5, 5],
+    [null, 7, 7, 7, 6, 6, 6, 6, 5, 5],
+    [null, 7, 7, 7, 7, 6, 6, 6, 6, 5],
+    [null, 8, 7, 7, 7, 7, 6, 6, 6, 6],
+    [null, 8, 8, 7, 7, 7, 7, 6, 6, 6],
+  ];
+  const addSpellArrays = (spellArray, modiferArry, arrySelector) => {
+    const modArray = modiferArry[arrySelector];
+    const result = spellArray.map((value, index) => {
+      if (value === null) {
+        return null;
+      }
+      return value + modArray[index];
+    });
+    return result;
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name === 'character_class') {
-      const selectedClass = classes.find((Class) => Class.firebaseKey === value);
-      const newSpellSlots = selectedClass.spell_prog[formInput.level];
-      setFormInput((prevState) => ({
-        ...prevState,
-        spell_slots: newSpellSlots,
-        [name]: value,
-      }));
-    } else if (name === 'level') {
-      const selectedClass = classes.find((Class) => Class.firebaseKey === formInput.character_class);
-      const newSpellSlots = selectedClass.spell_prog[value];
-      setFormInput((prevState) => ({
-        ...prevState,
-        spell_slots: newSpellSlots,
-        [name]: value,
-      }));
-    } else {
-      setFormInput((prevState) => ({
-        ...prevState,
-        [name]: value,
-      }));
-    }
+    // if (name === 'character_class') {
+    //   const selectedClass = classes.find((Class) => Class.firebaseKey === value);
+    //   const spellSlots = selectedClass.spell_prog[formInput.level];
+    //   const newSpellSlots = addSpellArrays(spellSlots, modiferSpellArray, ((formInput.ability_score - 10) / 2));
+    //   setFormInput((prevState) => ({
+    //     ...prevState,
+    //     spell_slots: newSpellSlots,
+    //     [name]: value,
+    //   }));
+    // } else if (name === 'level') {
+    //   const selectedClass = classes.find((Class) => Class.firebaseKey === formInput.character_class);
+    //   const spellSlots = selectedClass.spell_prog[value];
+    //   const newSpellSlots = addSpellArrays(spellSlots, modiferSpellArray, ((formInput.ability_score - 10) / 2));
+    //   setFormInput((prevState) => ({
+    //     ...prevState,
+    //     spell_slots: newSpellSlots,
+    //     [name]: value,
+    //   }));
+    // } else if (name === 'ability_score') {
+    //   const selectedClass = classes.find((Class) => Class.firebaseKey === formInput.character_class);
+    //   const spellSlots = selectedClass.spell_prog[formInput.level];
+    //   const newSpellSlots = addSpellArrays(spellSlots, modiferSpellArray, ((value - 10) / 2));
+    //   setFormInput((prevState) => ({
+    //     ...prevState,
+    //     spell_slots: newSpellSlots,
+    //     [name]: value,
+    //   }));
+    // } else {
+    //   setFormInput((prevState) => ({
+    //     ...prevState,
+    //     [name]: value,
+    //   }));
+    // }
+    setFormInput((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const selectedClass = classes.find((Class) => Class.firebaseKey === formInput.character_class);
+    const spellSlots = selectedClass.spell_prog[formInput.level];
+    const newSpellSlots = addSpellArrays(spellSlots, modiferSpellArray, ((formInput.ability_score - 10) / 2));
+    console.warn('selectedClass', selectedClass);
+    console.warn('spellSlots', spellSlots);
+    console.warn('newSpellSlots', newSpellSlots);
     if (obj.firebaseKey) {
-      updateCharacter(formInput).then(() => router.push('/'));
+      const payload = { ...formInput, spell_slots: newSpellSlots };
+      updateCharacter(payload).then(() => router.push('/'));
     } else {
-      const payload = { ...formInput, uid: user.uid };
+      const payload = { ...formInput, uid: user.uid, spell_slots: newSpellSlots };
       createCharacter(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
         updateCharacter(patchPayload).then(() => {
