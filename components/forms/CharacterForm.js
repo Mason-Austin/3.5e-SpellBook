@@ -25,6 +25,52 @@ function CharacterForm({ obj }) {
 
     if (obj.firebaseKey) setFormInput(obj);
   }, [obj, user]);
+  const modiferSpellArray = [
+    [null],
+    [null, 1],
+    [null, 1, 1],
+    [null, 1, 1, 1],
+    [null, 1, 1, 1, 1],
+    [null, 2, 1, 1, 1, 1],
+    [null, 2, 2, 1, 1, 1, 1],
+    [null, 2, 2, 2, 1, 1, 1, 1],
+    [null, 2, 2, 2, 2, 1, 1, 1, 1],
+    [null, 3, 2, 2, 2, 2, 1, 1, 1, 1],
+    [null, 3, 3, 2, 2, 2, 2, 1, 1, 1],
+    [null, 3, 3, 3, 2, 2, 2, 2, 1, 1],
+    [null, 3, 3, 3, 3, 2, 2, 2, 2, 1],
+    [null, 4, 3, 3, 3, 3, 2, 2, 2, 2],
+    [null, 4, 4, 3, 3, 3, 3, 2, 2, 2],
+    [null, 4, 4, 4, 3, 3, 3, 3, 2, 2],
+    [null, 4, 4, 4, 4, 3, 3, 3, 3, 2],
+    [null, 5, 4, 4, 4, 4, 3, 3, 3, 3],
+    [null, 5, 5, 4, 4, 4, 4, 3, 3, 3],
+    [null, 5, 5, 5, 4, 4, 4, 4, 3, 3],
+    [null, 5, 5, 5, 5, 4, 4, 4, 4, 3],
+    [null, 6, 5, 5, 5, 5, 4, 4, 4, 4],
+    [null, 6, 6, 5, 5, 5, 5, 4, 4, 4],
+    [null, 6, 6, 6, 5, 5, 5, 5, 4, 4],
+    [null, 6, 6, 6, 6, 5, 5, 5, 5, 4],
+    [null, 7, 6, 6, 6, 6, 5, 5, 5, 5],
+    [null, 7, 7, 6, 6, 6, 6, 5, 5, 5],
+    [null, 7, 7, 7, 6, 6, 6, 6, 5, 5],
+    [null, 7, 7, 7, 7, 6, 6, 6, 6, 5],
+    [null, 8, 7, 7, 7, 7, 6, 6, 6, 6],
+    [null, 8, 8, 7, 7, 7, 7, 6, 6, 6],
+  ];
+  const addSpellArrays = (spellArray, modiferArry, arrySelector) => {
+    const modArray = modiferArry[arrySelector];
+    const result = spellArray.map((value, index) => {
+      if (value === null) {
+        return null;
+      }
+      if (modArray[index]) {
+        return value + modArray[index];
+      }
+      return value;
+    });
+    return result;
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -36,10 +82,16 @@ function CharacterForm({ obj }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const selectedClass = classes.find((Class) => Class.firebaseKey === formInput.character_class);
+    const spellSlots = selectedClass.spell_prog[formInput.level];
+    const newSpellSlots = addSpellArrays(spellSlots, modiferSpellArray, ((formInput.ability_score - 10) / 2));
     if (obj.firebaseKey) {
-      updateCharacter(formInput).then(() => router.push('/'));
+      const payload = { ...formInput, spell_slots: newSpellSlots, max_spell_slots: newSpellSlots };
+      updateCharacter(payload).then(() => router.push('/'));
     } else {
-      const payload = { ...formInput, uid: user.uid };
+      const payload = {
+        ...formInput, uid: user.uid, spell_slots: newSpellSlots, max_spell_slots: newSpellSlots,
+      };
       createCharacter(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
         updateCharacter(patchPayload).then(() => {
