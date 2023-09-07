@@ -41,11 +41,7 @@ function SpellManagerModal({ characterObj }) {
   };
   return (
     <>
-      {/* <Button variant="primary" onClick={handleShow}>
-        Launch static backdrop modal
-      </Button> */}
-
-      <p onClick={handleShow}>Spell Manager</p>
+      <p style={{ height: '.5rem' }} onClick={handleShow}>Spell Manager</p>
 
       <Modal
         show={show}

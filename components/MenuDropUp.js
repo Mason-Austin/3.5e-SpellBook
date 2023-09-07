@@ -5,6 +5,12 @@ import { ButtonGroup } from 'react-bootstrap';
 import SpellManagerModal from './SpellMangerModal';
 
 function MenuDropUp({ firebaseKey, characterObj }) {
+  const whichWindow = () => {
+    if (window.location.pathname.includes('/character/spell/')) {
+      return true;
+    }
+    return false;
+  };
   return (
     <>
       <div className="mb-2">
@@ -16,8 +22,9 @@ function MenuDropUp({ firebaseKey, characterObj }) {
           variant="secondary"
           title="Menu"
         >
-          <Dropdown.Item href={`/character/edit/${firebaseKey}`}>Edit Character</Dropdown.Item>
+          <Dropdown.Item href={whichWindow() ? `/character/${firebaseKey}` : `/character/spell/${firebaseKey}`}>{whichWindow() ? 'Prepared Spells' : 'Known Spells'}</Dropdown.Item>
           <Dropdown.Item><SpellManagerModal characterObj={characterObj} /></Dropdown.Item>
+          <Dropdown.Item href={`/character/edit/${firebaseKey}`}>Edit Character</Dropdown.Item>
         </DropdownButton>
       </div>
     </>

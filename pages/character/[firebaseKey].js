@@ -1,8 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import Link from 'next/link';
-import { Button } from 'react-bootstrap';
 import SpellCard from '../../components/SpellCard';
 import { getCharacterSpells } from '../../api/mergedData';
 import Search from '../../components/Search';
@@ -29,12 +27,7 @@ export default function ViewCharacter() {
     <div>
       <div className="spell-link-btn">
         <h1>Prepared Spells</h1>
-        <div className="rw">
-          <Link passHref href={`/character/spell/${firebaseKey}`}>
-            <Button>Known Spells</Button>
-          </Link>
-          <MenuDropUp firebaseKey={firebaseKey} characterObj={character} />
-        </div>
+        <MenuDropUp firebaseKey={firebaseKey} characterObj={character} />
       </div>
       <Search contents={spells} setSearchResults={setSearchResults} />
       {searchResults?.map((spell) => (
