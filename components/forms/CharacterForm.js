@@ -64,7 +64,10 @@ function CharacterForm({ obj }) {
       if (value === null) {
         return null;
       }
-      return value + modArray[index];
+      if (modArray[index]) {
+        return value + modArray[index];
+      }
+      return value;
     });
     return result;
   };

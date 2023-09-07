@@ -13,12 +13,14 @@ export default function SpellSlot({
   }, [currentSpellSlot]);
   return (
     <>
-      <div style={{ border: 'red dotted 1px', position: 'relative' }}>
-        <p style={{ margin: 'auto', textAlign: 'center' }}>Level {spellLevel} </p>
-        <p style={{ position: 'absolute', right: '33%', bottom: '0%' }}>{currentSpellSlot}/{maxSpellSlot}</p>
-        <FaMinus onClick={handleClickMinus} />
-        <CircularProgress variant="determinate" value={spellPrecentage} />
-        <FaPlus onClick={handleClickPlus} />
+      <div className="spell-slot">
+        <p>Level {spellLevel} </p>
+        <p style={{ position: 'absolute', right: '42%', top: '49%' }}>{currentSpellSlot}/{maxSpellSlot}</p>
+        <div className="spell-slot-ind">
+          <FaMinus onClick={handleClickMinus} />
+          <CircularProgress style={{ margin: '10px' }} variant="determinate" value={spellPrecentage} />
+          <FaPlus onClick={handleClickPlus} />
+        </div>
       </div>
     </>
   );
