@@ -16,6 +16,9 @@ function SpellManagerModal({ characterObj }) {
   }, [characterObj]);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const handleClickReset = () => {
+    setSpellSlots(characterObj.max_spell_slots);
+  };
   const handleClickPlus = (arryIndex) => {
     console.warn('plus is working');
     if (spellSlots[arryIndex] === characterObj.max_spell_slots[arryIndex]) {
@@ -49,23 +52,22 @@ function SpellManagerModal({ characterObj }) {
         backdrop="static"
         keyboard={false}
         size="lg"
-        style={{ color: 'black' }}
+        style={{ color: 'white' }}
       >
-        <Modal.Header closeButton>
+        <Modal.Header style={{ backgroundColor: 'black', borderBottom: 'white .2rem solid' }} closeButton>
           <Modal.Title>Spell Manager</Modal.Title>
         </Modal.Header>
-        <Modal.Body className="rw">
+        <Modal.Body style={{ backgroundColor: 'black' }} className="rw">
           {spellSlots?.map((spellLevel, index) => (
             spellLevel !== null ? (
               <SpellSlot currentSpellSlot={spellLevel} maxSpellSlot={characterObj.max_spell_slots[index]} spellLevel={index} handleClickMinus={() => handleClickMinus(index)} handleClickPlus={() => handleClickPlus(index)} />
             ) : null
           ))}
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleSave}>Understood</Button>
+        <Modal.Footer style={{ backgroundColor: 'black', borderTop: 'white .2rem solid' }}>
+          <Button variant="secondary" onClick={handleClose}>Close</Button>
+          <Button variant="success" onClick={handleSave}>Save</Button>
+          <Button variant="primary" onClick={handleClickReset}>Restore Spell Slots</Button>
         </Modal.Footer>
       </Modal>
     </>

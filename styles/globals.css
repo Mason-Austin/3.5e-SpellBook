@@ -155,7 +155,7 @@ form {
   align-items: center;
   width: calc(20% - 1%);
   margin: .5%;
-  border: black solid 2px;
+  border: #1A74E2 solid 2px;
   position: relative;
 }
 
