@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import { FaDice } from 'react-icons/fa';
 
 function DiceRollerModal() {
   const [show, setShow] = useState(false);
@@ -10,9 +11,7 @@ function DiceRollerModal() {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        Launch demo modal
-      </Button>
+      <FaDice onClick={handleShow} />
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
