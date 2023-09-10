@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
 import Card from 'react-bootstrap/Card';
@@ -27,10 +29,10 @@ function CharacterCard({ characterObj, onUpdate }) {
   }, []);
 
   return (
-    <Card className="character-card" onClick={() => { router.push(`/character/${characterObj.firebaseKey}`); }}>
+    <Card className="character-card">
       <Card.Body className="character-body">
         <img src="https://d1vzi28wh99zvq.cloudfront.net/images/8957/210791-thumb140.png" alt="spellbook cover" />
-        <div style={{ width: '55%', marginLeft: '5%' }}>
+        <div style={{ width: '55%', marginLeft: '5%' }} onClick={() => { router.push(`/character/${characterObj.firebaseKey}`); }}>
           <h2>{characterObj.name}</h2>
           <div className="character-info">
             <h3>{characterClass.name}</h3>
