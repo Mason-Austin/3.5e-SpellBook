@@ -148,7 +148,7 @@ function CharacterForm({ obj }) {
           name="character_class"
           onChange={handleChange}
           className="mb-3"
-          value={obj.character_class} // FIXME: modify code to remove error
+          value={obj.character_class}
           required
         >
           <option value="">Select a Class</option>
