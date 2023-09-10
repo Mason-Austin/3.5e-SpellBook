@@ -40,33 +40,38 @@ function DiceRollerModal() {
     <>
       <FaDice onClick={handleShow} />
 
-      <Modal show={show} onHide={handleClose} style={{ color: 'black' }} size="lg">
-        <Modal.Header closeButton>
+      <Modal show={show} onHide={handleClose} style={{ color: 'white' }} size="lg">
+        <Modal.Header closeButton style={{ backgroundColor: 'black', borderBottom: 'white .2rem solid' }}>
           <Modal.Title>Dice Roller</Modal.Title>
         </Modal.Header>
-        <Form.Group className="mb-3">
-          <Form.Label>Number of Dice</Form.Label>
-          <Form.Control value={input.numDice} onChange={handleChange} name="numDice" type="number" placeholder="Number of Dice" />
-        </Form.Group>
-        <Form.Select value={input.typeOfDice} name="typeOfDice" onChange={handleChange} aria-label="Default select example">
-          <option>Choose Dice Type</option>
-          <option value="100">d100</option>
-          <option value="20">d20</option>
-          <option value="12">d12</option>
-          <option value="10">d10</option>
-          <option value="8">d8</option>
-          <option value="6">d6</option>
-          <option value="4">d4</option>
-        </Form.Select>
-        <Form.Group className="mb-3">
-          <Form.Label>Results</Form.Label>
-          <Form.Control value={input.result} name="result" type="text" />
-        </Form.Group>
-        <Modal.Footer>
+        <div style={{ backgroundColor: 'black' }} className="rnw">
+          <Form.Group className="mb-3 dice-input">
+            <Form.Label>Number of Dice</Form.Label>
+            <Form.Control value={input.numDice} onChange={handleChange} name="numDice" type="number" placeholder="Number of Dice" />
+          </Form.Group>
+          <Form.Group className="mb-3 dice-input">
+            <Form.Label>Type of Dice</Form.Label>
+            <Form.Select value={input.typeOfDice} name="typeOfDice" onChange={handleChange} aria-label="Default select example">
+              <option>Choose Dice Type</option>
+              <option value="100">d100</option>
+              <option value="20">d20</option>
+              <option value="12">d12</option>
+              <option value="10">d10</option>
+              <option value="8">d8</option>
+              <option value="6">d6</option>
+              <option value="4">d4</option>
+            </Form.Select>
+          </Form.Group>
+          <Form.Group className="mb-3 dice-input">
+            <Form.Label>Results</Form.Label>
+            <Form.Control value={input.result} name="result" type="text" />
+          </Form.Group>
+        </div>
+        <Modal.Footer style={{ backgroundColor: 'black', borderTop: 'white .2rem solid' }}>
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="secondary" onClick={diceRollerFunc}>
+          <Button variant="primary" onClick={diceRollerFunc}>
             Role
           </Button>
         </Modal.Footer>

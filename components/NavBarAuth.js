@@ -21,6 +21,9 @@ export default function NavBarAuth() {
             <Link passHref href="/">
               <Nav.Link>Characters</Nav.Link>
             </Link>
+            <Link passHref href="/character/new">
+              <Nav.Link>Create Character</Nav.Link>
+            </Link>
             <Link passHref href="/allSpells">
               <Nav.Link>All spells</Nav.Link>
             </Link>
