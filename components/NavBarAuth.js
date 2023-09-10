@@ -5,6 +5,7 @@ import {
   Navbar, Container, Nav, Button,
 } from 'react-bootstrap';
 import { signOut } from '../utils/auth';
+import DiceRollerModal from './DiceRollerModal';
 
 export default function NavBarAuth() {
   return (
@@ -20,9 +21,13 @@ export default function NavBarAuth() {
             <Link passHref href="/">
               <Nav.Link>Characters</Nav.Link>
             </Link>
+            <Link passHref href="/character/new">
+              <Nav.Link>Create Character</Nav.Link>
+            </Link>
             <Link passHref href="/allSpells">
               <Nav.Link>All spells</Nav.Link>
             </Link>
+            <DiceRollerModal />
             <Button variant="danger" onClick={signOut}>Sign Out</Button>
           </Nav>
         </Navbar.Collapse>
