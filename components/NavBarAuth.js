@@ -16,8 +16,7 @@ export default function NavBarAuth() {
         </Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto">
-            {/* CLOSE NAVBAR ON LINK SELECTION: https://stackoverflow.com/questions/72813635/collapse-on-select-react-bootstrap-navbar-with-nextjs-not-working */}
+          <Nav style={{ width: '100%' }} className="me-auto">
             <Link passHref href="/">
               <Nav.Link>Characters</Nav.Link>
             </Link>
@@ -28,7 +27,7 @@ export default function NavBarAuth() {
               <Nav.Link>All spells</Nav.Link>
             </Link>
             <DiceRollerModal />
-            <Button variant="danger" onClick={signOut}>Sign Out</Button>
+            <Button variant="danger" className="sign-out" onClick={signOut}>Sign Out</Button>
           </Nav>
         </Navbar.Collapse>
       </Container>

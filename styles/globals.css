@@ -31,6 +31,16 @@ form {
   margin: auto auto;
 }
 
+.icon-dice{
+  color: #1A74E2;
+  font-size: 2rem;
+  margin: auto 0;
+}
+
+.sign-out{
+  margin: auto 1% auto auto;
+}
+
 .character-card {
   background-color: #1F2123;
   color: white;
