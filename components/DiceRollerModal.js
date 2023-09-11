@@ -38,7 +38,7 @@ function DiceRollerModal() {
 
   return (
     <>
-      <FaDice onClick={handleShow} />
+      <FaDice className="icon-dice" onClick={handleShow} />
 
       <Modal show={show} onHide={handleClose} style={{ color: 'white' }} size="lg">
         <Modal.Header closeButton style={{ backgroundColor: 'black', borderBottom: 'white .2rem solid' }}>

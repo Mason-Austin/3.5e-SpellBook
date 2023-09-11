@@ -106,14 +106,14 @@ function Search({ contents, setSearchResults }) {
               value={input.name}
             />
             <Dropdown>
-              <Dropdown.Toggle variant="success" id="dropdown-basic">
-                Dropdown Button
+              <Dropdown.Toggle style={{ margin: '2% auto' }} variant="success" id="dropdown-basic">
+                School of Magic
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
                 {['Abjuration', 'Conjuration', 'Divination', 'Enchantment', 'Evocation', 'Illusion', 'Necromancy', 'Transmutation'].map((type) => (
                   <div key={type} className="mb-3">
-                    <Form.Check // prettier-ignore
+                    <Form.Check
                       type="checkbox"
                       id={type}
                       label={type}
@@ -128,13 +128,13 @@ function Search({ contents, setSearchResults }) {
             </Dropdown>
             <Dropdown>
               <Dropdown.Toggle variant="success" id="dropdown-basic">
-                Dropdown Button
+                Spell Level
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
                 {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((type) => (
                   <div key={type} className="mb-3">
-                    <Form.Check // prettier-ignore
+                    <Form.Check
                       type="checkbox"
                       id={type}
                       label={type}
@@ -156,7 +156,6 @@ function Search({ contents, setSearchResults }) {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary">Understood</Button>
         </Modal.Footer>
       </Modal>
     </>
