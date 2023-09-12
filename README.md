@@ -4,8 +4,7 @@ This application allows the user to easly Manage their 3.5e D&D character's spel
 
 [View App](dnd-3-5e-spellbook.netlify.app)
 
-## Get Started <!-- OPTIONAL, but doesn't hurt -->
-PLACE CODE SNIPPET HERE
+<!-- ## Code Snippet -->
 
 ## About the User <!-- This is a scaled down user persona -->
 - The ideal user for this application is a 3.5e D&D player
