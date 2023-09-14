@@ -182,7 +182,7 @@ form {
   width: calc(33.33% - 1%);
 }
 
-#dice-box #dice-canvas {
+#dice-canvas {
   border: dotted 1px red;
   position: absolute;
   top: 0;

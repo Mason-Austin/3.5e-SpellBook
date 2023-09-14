@@ -1,9 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable import/no-extraneous-dependencies */
 import React, { useEffect, useState } from 'react';
-// import DiceBox from '@3d-dice/dice-box'; // Import the DiceBox module
 import CharacterCard from '../components/CharacterCard';
-import DiceRoller from '../components/DiceRoller';
 import { useAuth } from '../utils/context/authContext';
 import { getCharacters } from '../api/characterData';
 
@@ -43,7 +41,6 @@ function Home() {
             <CharacterCard key={character.firebaseKey} characterObj={character} onUpdate={getAllCharacters} />
           ))}
         </div>
-        <DiceRoller />
       </div>
     </>
   );

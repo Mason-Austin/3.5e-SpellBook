@@ -6,15 +6,15 @@ import { Button } from 'react-bootstrap';
 function DiceComponent() {
   const [newDiceBox, setNewDiceBox] = useState();
   const handleDiceRoll = () => {
-    newDiceBox.roll('1d20');
+    newDiceBox.roll('6d6');
   };
   useEffect(() => {
     // Create a new instance of DiceBox and initialize it when the component mounts
     const diceBox = new DiceBox('#dice-box', {
       id: 'dice-canvas',
       assetPath: '/assets/dice-box/', // Adjust the path based on your project structure
-      scale: 9,
-      throwForce: 9,
+      scale: 5,
+      throwForce: 5,
     });
 
     setNewDiceBox(diceBox);

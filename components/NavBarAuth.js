@@ -4,10 +4,11 @@ import Link from 'next/link';
 import {
   Navbar, Container, Nav, Button,
 } from 'react-bootstrap';
+import PropTypes from 'prop-types';
+import { FaDice } from 'react-icons/fa';
 import { signOut } from '../utils/auth';
-import DiceRollerModal from './DiceRollerModal';
 
-export default function NavBarAuth() {
+export default function NavBarAuth({ toggleDice }) {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
@@ -26,7 +27,8 @@ export default function NavBarAuth() {
             <Link passHref href="/allSpells">
               <Nav.Link>All spells</Nav.Link>
             </Link>
-            <DiceRollerModal />
+            <FaDice className="icon-dice" onClick={toggleDice} />
+            {/* <DiceRollerModal /> */}
             <Button variant="danger" className="sign-out" onClick={signOut}>Sign Out</Button>
           </Nav>
         </Navbar.Collapse>
@@ -34,3 +36,7 @@ export default function NavBarAuth() {
     </Navbar>
   );
 }
+
+NavBarAuth.propTypes = {
+  toggleDice: PropTypes.func.isRequired,
+};
