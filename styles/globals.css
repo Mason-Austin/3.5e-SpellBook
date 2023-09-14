@@ -181,3 +181,14 @@ form {
   margin: .5%;
   width: calc(33.33% - 1%);
 }
+
+#dice-box #dice-canvas {
+  border: dotted 1px red;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999; /* Adjust the z-index value as needed to make it appear above other elements */
+  pointer-events: none;
+}
