@@ -1,13 +1,24 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import DiceBox from '@3d-dice/dice-box';
-import { Button } from 'react-bootstrap';
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import Form from 'react-bootstrap/Form';
+// import { DisplayResults } from '@3d-dice/dice-ui';
 
 function DiceComponent() {
   const [newDiceBox, setNewDiceBox] = useState();
-  const handleDiceRoll = () => {
-    newDiceBox.roll('6d6');
+  const [diceValue, setDiceValue] = useState();
+  // const Display = new DisplayResults('#dice-box');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    newDiceBox.roll(diceValue);
   };
+
+  const handleDiceChange = (e) => {
+    setDiceValue(e.target.value);
+  };
+
   useEffect(() => {
     // Create a new instance of DiceBox and initialize it when the component mounts
     const diceBox = new DiceBox('#dice-box', {
@@ -20,13 +31,21 @@ function DiceComponent() {
     setNewDiceBox(diceBox);
 
     diceBox.init();
-
-    // Clean up the DiceBox instance when the component unmounts
   }, []);
 
   return (
     <>
-      <Button type="button" variant="danger" onClick={handleDiceRoll}>Sign Out</Button>
+      <Form onSubmit={handleSubmit}>
+        <FloatingLabel controlId="floatingInput1" className="mb-3">
+          <Form.Control
+            type="text"
+            placeholder="Ex:1d20"
+            value={diceValue}
+            onChange={handleDiceChange}
+            required
+          />
+        </FloatingLabel>
+      </Form>
       <div id="dice-box" />
     </>
   );
