@@ -38,6 +38,23 @@ function DiceComponent() {
     });
   };
 
+  const handleClickClear = () => {
+    setSelectedDice(initalState);
+    newDiceBox.clear();
+  };
+
+  const displaySelectedDice = () => {
+    let selectedDiceString = '';
+    Object.keys(selectedDice).forEach((key) => {
+      if (selectedDice[key] > 0) {
+        const value = selectedDice[key];
+        selectedDiceString += (`${value}${key} + `);
+      }
+    });
+    selectedDiceString = selectedDiceString.slice(0, -2);
+    return selectedDiceString;
+  };
+
   const handleDiceclick = (e) => {
     const name = e.target.alt;
     setSelectedDice((prevState) => ({
@@ -61,27 +78,33 @@ function DiceComponent() {
 
   return (
     <>
-      <div style={{ textAlign: 'center' }}>
-        <Icon onClick={handleDiceclick} sx={diceIcons}>
-          <img value="d4" src={d4.src} alt="d4" />
-        </Icon>
-        <Icon onClick={handleDiceclick} value="d6" sx={diceIcons}>
-          <img src={d6.src} alt="d6" />
-        </Icon>
-        <Icon onClick={handleDiceclick} value="d8" sx={diceIcons}>
-          <img src={d8.src} alt="d8" />
-        </Icon>
-        <Icon onClick={handleDiceclick} value="d10" sx={diceIcons}>
-          <img src={d10.src} alt="d10" />
-        </Icon>
-        <Icon onClick={handleDiceclick} value="d12" sx={diceIcons}>
-          <img src={d12.src} alt="d12" />
-        </Icon>
-        <Icon onClick={handleDiceclick} value="d20" sx={diceIcons}>
-          <img src={d20.src} alt="d20" />
-        </Icon>
+      <div className="dice-UI">
+        <div>
+          <Icon onClick={handleDiceclick} sx={diceIcons}>
+            <img value="d4" src={d4.src} alt="d4" />
+          </Icon>
+          <Icon onClick={handleDiceclick} value="d6" sx={diceIcons}>
+            <img src={d6.src} alt="d6" />
+          </Icon>
+          <Icon onClick={handleDiceclick} value="d8" sx={diceIcons}>
+            <img src={d8.src} alt="d8" />
+          </Icon>
+          <Icon onClick={handleDiceclick} value="d10" sx={diceIcons}>
+            <img src={d10.src} alt="d10" />
+          </Icon>
+          <Icon onClick={handleDiceclick} value="d12" sx={diceIcons}>
+            <img src={d12.src} alt="d12" />
+          </Icon>
+          <Icon onClick={handleDiceclick} value="d20" sx={diceIcons}>
+            <img src={d20.src} alt="d20" />
+          </Icon>
+        </div>
+        <div style={{ display: 'flex', flexFlow: 'column wrap' }}>
+          <Button style={{ margin: 'auto' }} onClick={handleRollClick} variant="primary">Roll</Button>
+          <Button style={{ margin: 'auto' }} onClick={handleClickClear} variant="primary">Clear</Button>
+        </div>
       </div>
-      <Button onClick={handleRollClick} variant="primary">Roll</Button>
+      <h3 className="dice-UI">{displaySelectedDice()}</h3>
       <div id="dice-box" />
     </>
   );
