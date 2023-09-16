@@ -192,3 +192,7 @@ form {
   z-index: 9999; /* Adjust the z-index value as needed to make it appear above other elements */
   pointer-events: none;
 }
+
+.dice-icon{
+  font-size: 2rem;
+}
