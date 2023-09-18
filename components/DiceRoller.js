@@ -22,25 +22,41 @@ const initalState = {
 
 function DiceComponent() {
   const [newDiceBox, setNewDiceBox] = useState();
-  // const [diceValue, setDiceValue] = useState();
+  const [diceValue, setDiceValue] = useState(false);
   const [selectedDice, setSelectedDice] = useState(initalState);
   const diceIcons = {
     width: '5rem',
     height: '5rem',
   };
-  const handleRollClick = (e) => {
-    e.preventDefault();
+
+  const handleRollClick = () => {
+    let allSingleDiceValue = '';
     Object.keys(selectedDice).forEach((key) => {
       if (selectedDice[key] > 0) {
         const value = selectedDice[key];
         newDiceBox.roll(`${value}${key}`);
       }
     });
+    newDiceBox.onRollComplete = (rolls) => {
+      const totalDiceSum = rolls.reduce((acc, result) => acc + result.value, 0);
+      console.warn('rolls', rolls);
+      rolls.forEach((rollGroup) => {
+        console.warn('rollGroup', rollGroup);
+        rollGroup.rolls.forEach((roll) => {
+          const diceTotal = roll.value;
+          allSingleDiceValue += `${diceTotal} + `;
+        });
+      });
+      allSingleDiceValue = allSingleDiceValue.slice(0, -2);
+      allSingleDiceValue += ` = ${totalDiceSum}`;
+      setDiceValue(allSingleDiceValue);
+    };
   };
 
   const handleClickClear = () => {
     setSelectedDice(initalState);
     newDiceBox.clear();
+    setDiceValue(false);
   };
 
   const displaySelectedDice = () => {
@@ -62,6 +78,7 @@ function DiceComponent() {
       [name]: prevState[name] + 1,
     }));
   };
+
   useEffect(() => {
     // Create a new instance of DiceBox and initialize it when the component mounts
     const diceBox = new DiceBox('#dice-box', {
@@ -72,7 +89,6 @@ function DiceComponent() {
     });
 
     setNewDiceBox(diceBox);
-
     diceBox.init();
   }, []);
 
@@ -105,7 +121,9 @@ function DiceComponent() {
         </div>
       </div>
       <h3 className="dice-UI">{displaySelectedDice()}</h3>
-      <div id="dice-box" />
+      <div id="dice-box">
+        <h3 className="dice-UI">{diceValue}</h3>
+      </div>
     </>
   );
 }
