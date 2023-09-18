@@ -7,7 +7,6 @@ import { getCharacters } from '../api/characterData';
 
 function Home() {
   const [characters, setCharacters] = useState([]);
-
   const { user } = useAuth();
 
   const getAllCharacters = () => {
@@ -18,15 +17,32 @@ function Home() {
     getAllCharacters();
   }, []);
 
+  // useEffect(() => {
+  //   // Create a new instance of DiceBox and initialize it when the component mounts
+  //   const diceBox = new DiceBox('#dice-box', {
+  //     id: 'dice-canvas',
+  //     assetPath: '/assets/dice-box/', // Adjust the path based on your project structure
+  //     scale: 9,
+  //     throwForce: 9,
+  //   });
+
+  //   diceBox.init().then(() => {
+  //     // Now the diceBox is ready to roll some dice
+  //     diceBox.roll('5d4');
+  //   });
+  // }, []);
+
   return (
-    <div style={{ margin: 'auto auto', width: '100%' }}>
-      <h1>Characters</h1>
-      <div className="rw">
-        {characters.map((character) => (
-          <CharacterCard key={character.firebaseKey} characterObj={character} onUpdate={getAllCharacters} />
-        ))}
+    <>
+      <div style={{ margin: 'auto auto', width: '100%' }}>
+        <h1>Characters</h1>
+        <div className="rw">
+          {characters.map((character) => (
+            <CharacterCard key={character.firebaseKey} characterObj={character} onUpdate={getAllCharacters} />
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
