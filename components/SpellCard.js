@@ -6,7 +6,6 @@ import { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { FaStar, FaRegStar } from 'react-icons/fa';
 import { updateCharacter } from '../api/characterData';
-// import { updateCharacter } from '../api/characterData';
 
 function SpellCard({
   spellObj,

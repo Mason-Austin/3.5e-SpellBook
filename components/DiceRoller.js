@@ -39,9 +39,7 @@ function DiceComponent() {
     });
     newDiceBox.onRollComplete = (rolls) => {
       const totalDiceSum = rolls.reduce((acc, result) => acc + result.value, 0);
-      console.warn('rolls', rolls);
       rolls.forEach((rollGroup) => {
-        console.warn('rollGroup', rollGroup);
         rollGroup.rolls.forEach((roll) => {
           const diceTotal = roll.value;
           allSingleDiceValue += `${diceTotal} + `;
@@ -80,10 +78,9 @@ function DiceComponent() {
   };
 
   useEffect(() => {
-    // Create a new instance of DiceBox and initialize it when the component mounts
     const diceBox = new DiceBox('#dice-box', {
       id: 'dice-canvas',
-      assetPath: '/assets/dice-box/', // Adjust the path based on your project structure
+      assetPath: '/assets/dice-box/',
       scale: 5,
       throwForce: 5,
     });

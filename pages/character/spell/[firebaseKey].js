@@ -19,7 +19,6 @@ function ViewKnownSpells() {
       const { spellArry, classObj, characterObj } = data;
       const filteredSpells = classSpellFilter(spellArry, classObj, characterObj);
       setCharacter(characterObj);
-      // setCharacterClass(classObj);
       setSpells(filteredSpells);
       setSearchResults(filteredSpells);
     });

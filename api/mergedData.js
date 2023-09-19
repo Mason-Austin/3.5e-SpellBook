@@ -5,7 +5,6 @@ import { getSingleClass } from './classData';
 const getCharacterSpells = (characterFirebaseKey) => new Promise((resolve, reject) => {
   getSingleCharacter(characterFirebaseKey)
     .then((characterObj) => {
-      // Now, also get the character's class using getSingleClass
       getSingleClass(characterObj.character_class)
         .then((classObj) => {
           if (characterObj.favorite) {
@@ -16,7 +15,6 @@ const getCharacterSpells = (characterFirebaseKey) => new Promise((resolve, rejec
               resolve({ characterObj, classObj, spellArry });
             });
           } else {
-            // If there are no favorite spells, just resolve with the character and class objects
             resolve({ characterObj, classObj });
           }
         })

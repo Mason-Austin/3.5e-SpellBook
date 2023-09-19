@@ -30,6 +30,7 @@ export default function ViewCharacter() {
         <MenuDropUp firebaseKey={firebaseKey} characterObj={character} />
       </div>
       <Search contents={spells} setSearchResults={setSearchResults} />
+      {character.favorite ? null : <h3>There are currently no Prepared/Favorited spells go to Menu and then Known spells</h3>}
       {searchResults?.map((spell) => (
         <SpellCard key={spell.name} spellObj={spell} characterObj={character} setCharacter={setCharacter} onUpdate={getAllCharacterSpells} />
       ))}

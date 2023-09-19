@@ -4,6 +4,12 @@
   color: black;
 }
 
+.dice-UI{
+  justify-content: center;
+  display: flex;
+  flex-flow: row nowrap;
+}
+
 body {
   padding: 0;
   margin: 0;
@@ -185,17 +191,11 @@ form {
 #dice-canvas {
   position: absolute;
   width: 100%;
-  height: 79%;
+  height: 75%;
   z-index: 9999; /* Adjust the z-index value as needed to make it appear above other elements */
   pointer-events: none;
 }
 
 .dice-icon{
   font-size: 2rem;
-}
-
-.dice-UI{
-  justify-content: center;
-  display: flex;
-  flex-flow: row nowrap;
 }

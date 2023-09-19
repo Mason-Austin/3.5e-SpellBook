@@ -51,7 +51,6 @@ function Search({ contents, setSearchResults }) {
       ...preveState,
       [name]: value,
     }));
-    console.warn(input);
   };
 
   const handleClose = () => setShow(false);

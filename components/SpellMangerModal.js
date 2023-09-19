@@ -20,7 +20,6 @@ function SpellManagerModal({ characterObj }) {
     setSpellSlots(characterObj.max_spell_slots);
   };
   const handleClickPlus = (arryIndex) => {
-    console.warn('plus is working');
     if (spellSlots[arryIndex] === characterObj.max_spell_slots[arryIndex]) {
       window.alert('Spell slots can not exceed your max limit');
     } else {
