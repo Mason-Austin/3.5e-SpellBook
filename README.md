@@ -4,7 +4,6 @@ This application allows the user to easly Manage their 3.5e D&D character's spel
 
 [View App](dnd-3-5e-spellbook.netlify.app)
 
-<!-- ## Code Snippet -->
 
 ## About the User <!-- This is a scaled down user persona -->
 - The ideal user for this application is a 3.5e D&D player
@@ -17,16 +16,16 @@ This application allows the user to easly Manage their 3.5e D&D character's spel
 - Each character has their own Known spells screen which only shows the user spells their character can cast based on class and level
 - Each character has their own Spell Manager which shows the characters spell slots and how many they have. The Spell slots are based on their class, level, and spell casting ability
 - All Spells screen which shows all the spells in my database and allows the user to filter through all the spells.
+- The app contains a physics based dice roller
 
 <!-- ## Video Walkthrough of APP NAME A loom link is sufficient https://www.loom.com/share/829b90d831ea441ba2db6bea724af210-->
 
 
 ## Relevant Links <!-- Link to all the things that are required outside of the ones that have their own section -->
+- [Checkout my Loom Video](https://www.loom.com/share/f1ef94f7b4344fdc874305c47dd5fb69?sid=1973c351-84d3-4a33-87f1-08827628e71f)
 - [Check out the deployed site](dnd-3-5e-spellbook.netlify.app)
 - [Wireframes](https://www.figma.com/file/svGZ43BBtw5uhmCspc6kDY/3.5e-Spell-book?type=design&node-id=0%3A1&mode=design&t=kcYstrhlOxDXDu8d-1)
 - [Project Board](https://github.com/users/Mason-Austin/projects/2/views/1)
-
-<!-- ## Code Snippet -->
 
 <!-- ## Project Screenshots These can be inside of your project. Look at the repos from class and see how the images are included in the readme <img width="1148" alt="Your Alt" src="your-link.png"> -->
 
