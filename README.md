@@ -3,6 +3,7 @@
 This application allows the user to easly Manage their 3.5e D&D character's spells and spell slots.
 
 [View App](dnd-3-5e-spellbook.netlify.app)
+[Checkout my Loom Video](https://www.loom.com/share/f1ef94f7b4344fdc874305c47dd5fb69?sid=1973c351-84d3-4a33-87f1-08827628e71f)
 
 
 ## About the User <!-- This is a scaled down user persona -->
@@ -18,7 +19,7 @@ This application allows the user to easly Manage their 3.5e D&D character's spel
 - All Spells screen which shows all the spells in my database and allows the user to filter through all the spells.
 - The app contains a physics based dice roller
 
-<!-- ## Video Walkthrough of APP NAME A loom link is sufficient https://www.loom.com/share/829b90d831ea441ba2db6bea724af210-->
+## To get the App setup
 
 1. Set up a [Firebase](https://firebase.google.com/) project - Here's how: [Firebase Setup & Authentication](https://www.loom.com/share/163ffe1539bb482196efa713ed6231e9)
 
