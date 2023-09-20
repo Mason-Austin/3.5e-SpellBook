@@ -174,8 +174,8 @@ function CharacterForm({ obj }) {
 CharacterForm.propTypes = {
   obj: PropTypes.shape({
     name: PropTypes.string,
-    level: PropTypes.number,
-    ability_score: PropTypes.number,
+    level: PropTypes.string,
+    ability_score: PropTypes.string,
     title: PropTypes.string,
     character_class: PropTypes.string,
     firebaseKey: PropTypes.string,

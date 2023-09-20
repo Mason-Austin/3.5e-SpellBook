@@ -94,7 +94,7 @@ function SpellCard({
       <p>{spellObj.effect ? `Effect: ${spellObj.effect}` : ''}</p>
       <p>{spellObj.saving_throw ? `Saving Throw: ${spellObj.saving_throw}` : ''}</p>
       <p>{spellObj.spell_resistance ? `Spell Resistance: ${spellObj.spell_resistance}` : ''}</p>
-      <p>{getDescription()}</p>
+      <div>{getDescription()}</div>
       {spellObj.description.length > 150 && (
         <Button type="button" onClick={toggleExpand}>
           {expanded ? 'Show Less' : 'Show More'}
@@ -118,7 +118,7 @@ SpellCard.propTypes = {
     level: PropTypes.string,
     school: PropTypes.string,
     descriptor: PropTypes.string,
-    components: PropTypes.string,
+    components: PropTypes.array,
     casting_time: PropTypes.string,
     range: PropTypes.string,
     target: PropTypes.string,

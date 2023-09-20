@@ -22,9 +22,18 @@ function MenuDropUp({ firebaseKey, characterObj }) {
           variant="secondary"
           title="Menu"
         >
-          <Dropdown.Item href={whichWindow() ? `/character/${firebaseKey}` : `/character/spell/${firebaseKey}`}>{whichWindow() ? 'Prepared Spells' : 'Known Spells'}</Dropdown.Item>
-          <Dropdown.Item><SpellManagerModal characterObj={characterObj} /></Dropdown.Item>
-          <Dropdown.Item href={`/character/edit/${firebaseKey}`}>Edit Character</Dropdown.Item>
+          <Dropdown.Item
+            key={whichWindow() ? 'prepared-spells' : 'known-spells'}
+            href={whichWindow() ? `/character/${firebaseKey}` : `/character/spell/${firebaseKey}`}
+          >
+            {whichWindow() ? 'Prepared Spells' : 'Known Spells'}
+          </Dropdown.Item>
+          <Dropdown.Item key="spell-manager">
+            <SpellManagerModal characterObj={characterObj} />
+          </Dropdown.Item>
+          <Dropdown.Item key="edit-character" href={`/character/edit/${firebaseKey}`}>
+            Edit Character
+          </Dropdown.Item>
         </DropdownButton>
       </div>
     </>

@@ -49,7 +49,7 @@ CharacterCard.propTypes = {
   characterObj: PropTypes.shape({
     name: PropTypes.string,
     character_class: PropTypes.string,
-    level: PropTypes.number,
+    level: PropTypes.string,
     firebaseKey: PropTypes.string,
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,

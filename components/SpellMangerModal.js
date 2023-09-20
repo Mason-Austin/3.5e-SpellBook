@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useEffect, useState } from 'react';
@@ -59,7 +60,7 @@ function SpellManagerModal({ characterObj }) {
         <Modal.Body style={{ backgroundColor: 'black' }} className="rw">
           {spellSlots?.map((spellLevel, index) => (
             spellLevel !== null ? (
-              <SpellSlot currentSpellSlot={spellLevel} maxSpellSlot={characterObj.max_spell_slots[index]} spellLevel={index} handleClickMinus={() => handleClickMinus(index)} handleClickPlus={() => handleClickPlus(index)} />
+              <SpellSlot key={index} currentSpellSlot={spellLevel} maxSpellSlot={characterObj.max_spell_slots[index]} spellLevel={index} handleClickMinus={() => handleClickMinus(index)} handleClickPlus={() => handleClickPlus(index)} />
             ) : null
           ))}
         </Modal.Body>
