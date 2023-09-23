@@ -69,12 +69,21 @@ function DiceComponent() {
     return selectedDiceString;
   };
 
-  const handleDiceclick = (e) => {
+  const handleDiceClick = (e) => {
     const name = e.target.alt;
-    setSelectedDice((prevState) => ({
-      ...prevState,
-      [name]: prevState[name] + 1,
-    }));
+
+    // Check if it's a right-click (context menu)
+    if (e.button === 2 && selectedDice[name] > 0) {
+      setSelectedDice((prevState) => ({
+        ...prevState,
+        [name]: prevState[name] - 1,
+      }));
+    } else if (e.button === 0) {
+      setSelectedDice((prevState) => ({
+        ...prevState,
+        [name]: prevState[name] + 1,
+      }));
+    }
   };
 
   useEffect(() => {
@@ -93,22 +102,22 @@ function DiceComponent() {
     <>
       <div className="dice-UI">
         <div>
-          <Icon onClick={handleDiceclick} sx={diceIcons}>
+          <Icon onMouseDown={handleDiceClick} onContextMenu={(e) => e.preventDefault()} sx={diceIcons}>
             <img value="d4" src={d4.src} alt="d4" />
           </Icon>
-          <Icon onClick={handleDiceclick} value="d6" sx={diceIcons}>
+          <Icon onMouseDown={handleDiceClick} onContextMenu={(e) => e.preventDefault()} value="d6" sx={diceIcons}>
             <img src={d6.src} alt="d6" />
           </Icon>
-          <Icon onClick={handleDiceclick} value="d8" sx={diceIcons}>
+          <Icon onMouseDown={handleDiceClick} onContextMenu={(e) => e.preventDefault()} value="d8" sx={diceIcons}>
             <img src={d8.src} alt="d8" />
           </Icon>
-          <Icon onClick={handleDiceclick} value="d10" sx={diceIcons}>
+          <Icon onMouseDown={handleDiceClick} onContextMenu={(e) => e.preventDefault()} value="d10" sx={diceIcons}>
             <img src={d10.src} alt="d10" />
           </Icon>
-          <Icon onClick={handleDiceclick} value="d12" sx={diceIcons}>
+          <Icon onMouseDown={handleDiceClick} onContextMenu={(e) => e.preventDefault()} value="d12" sx={diceIcons}>
             <img src={d12.src} alt="d12" />
           </Icon>
-          <Icon onClick={handleDiceclick} value="d20" sx={diceIcons}>
+          <Icon onMouseDown={handleDiceClick} onContextMenu={(e) => e.preventDefault()} value="d20" sx={diceIcons}>
             <img src={d20.src} alt="d20" />
           </Icon>
         </div>
